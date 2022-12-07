@@ -3,7 +3,7 @@
   <br /><br />
   <div class="card">
     <div class="card-body">
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
           <label class="form-label">Nama</label>
@@ -45,6 +45,16 @@
             {% endif %} 
             {% endfor %}
           </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Judul</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image"
+            value="{{ get_posting.image }}"
+            accept="image/png, image/jpeg"
+          />
         </div>
         <button type="submit" class="btn btn-info">Submit</button>
       </form>

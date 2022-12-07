@@ -13,6 +13,7 @@ class Posting(models.Model):
     judul = models.CharField(max_length=100)
     body = models.TextField()
     kategori = models.ForeignKey(Kategori, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
     
     def __str__(self):
         return self.nama

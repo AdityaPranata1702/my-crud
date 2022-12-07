@@ -19,6 +19,7 @@ def posts_add(request):
         input_judul = request.POST.get('judul')
         input_body = request.POST.get('body')
         input_kategori = request.POST.get('kategori')
+        input_image = request.POST.get('image')
         
         #panggil kategori 
         get_kategori = Kategori.objects.get(nama=input_kategori)
@@ -29,6 +30,7 @@ def posts_add(request):
             judul = input_judul,
             body = input_body,
             kategori = get_kategori, 
+            image = input_image,
         )
         return redirect(posts_list)
     context = {
@@ -47,6 +49,7 @@ def posts_update(request, id):
         input_judul = request.POST.get('judul')
         input_body = request.POST.get('body')
         input_kategori = request.POST.get('kategori')
+        input_image = request.POST.get('image')
         
         #panggil kategori 
         get_kategori = Kategori.objects.get(nama=input_kategori)
@@ -56,6 +59,7 @@ def posts_update(request, id):
         get_posting.judul = input_judul
         get_posting.body = input_body
         get_posting.kategori = get_kategori
+        get_posting.image = input_image,
         get_posting.save()
         
         return redirect(posts_list)
