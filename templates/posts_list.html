@@ -27,7 +27,9 @@
               <td>{{ p.judul }}</td>
               <td>{{ p.body }}</td>
               <td>{{ p.kategori }}</td>
-              <td>{{ p.image }}</td>
+              <td>
+                <img src="{{ p.image.url }}" style="width:110px;height:70px;">
+              </td>
               <td>
                 <a class="btn btn-warning btn-sm" href="{% url 'posts_update' p.id %}">Update</a> 
                 <a onclick="alert('Yakin Ingin Menghapus?')" class="btn btn-danger btn-sm" href="{% url 'posts_delete' p.id %}">Delete</a>
