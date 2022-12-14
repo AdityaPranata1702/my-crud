@@ -8,7 +8,7 @@ def index(request):
     posting_list = Posting.objects.all()
     context = {
         'title' : 'Halaman Pertama',
-        'posting' : posting_list
+        'posting' : posting_list,
     }
     return render(request, template_name, context)
 

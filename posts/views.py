@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from posts.models import Kategori, Posting
-
+import requests
 def posts_list(request):
     template_name = 'posts_list.html'
     posting_list = Posting.objects.all()
@@ -59,7 +59,7 @@ def posts_update(request, id):
         get_posting.judul = input_judul
         get_posting.body = input_body
         get_posting.kategori = get_kategori
-        get_posting.image = input_image,
+        get_posting.image = input_image
         get_posting.save()
         
         return redirect(posts_list)
