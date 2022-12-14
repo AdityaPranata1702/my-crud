@@ -5,16 +5,15 @@ from posts.views import *
 
 def index(request):
     template_name = 'index.html'
-    posting_list = Posting.objects.all()
+    
     context = {
-        'title' : 'Halaman Pertama',
-        'posting' : posting_list,
+        'title' : 'HOME',
     }
     return render(request, template_name, context)
 
 def about(request):
     template_name = 'about.html'
     context = {
-        'title' : 'Halaman Ketiga'
+        'title' : 'ABOUT',
     }
     return render(request, template_name, context)

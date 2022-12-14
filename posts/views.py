@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from posts.models import Kategori, Posting
 import requests
+
 def posts_list(request):
     template_name = 'posts_list.html'
     posting_list = Posting.objects.all()
@@ -73,3 +74,26 @@ def posts_update(request, id):
 def posts_delete(request, id):
     Posting.objects.get(id=id).delete()
     return redirect(posts_list)
+
+def posts(request):
+    template_name = 'api.html'
+    url = "https://newsapi.org/v2/everything?q=Cricket&from=2022-12-14&sortBy=popularity&apiKey=1b15168c2d2f4d15896b3de6b7c8be90"
+    
+    cricket_news = requests.get(url).json()
+    a = cricket_news['articles']
+    desc = []
+    title = []
+    img = []
+    
+    for i in range(len(a)):
+        f = a[i]
+        title.append(f['title'])
+        desc.append(f['description'])
+        img.append(f['urlToImage'])
+        
+    mylist = zip(title, desc, img)
+    context = {
+        'title' : 'HOME',
+        'mylist' : mylist,
+    }
+    return render(request, template_name, context)
