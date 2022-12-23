@@ -5,21 +5,21 @@ from posts.views import *
 
 def index(request):
     template_name = 'index.html'
-    url = "https://newsapi.org/v2/everything?q=Cricket&from=2022-12-14&sortBy=popularity&apiKey=1b15168c2d2f4d15896b3de6b7c8be90"
+    url = "https://api-berita-indonesia.vercel.app/antara/tekno/"
     
-    cricket_news = requests.get(url).json()
-    a = cricket_news['articles']
-    desc = []
-    title = []
-    img = []
+    api = requests.get(url).json()
+    a = api['data']
+    title=[]
+    content=[]
+    image = []
     
     for i in range(len(a)):
         f = a[i]
         title.append(f['title'])
-        desc.append(f['description'])
-        img.append(f['urlToImage'])
+        content.append(f['description'])
+        image.append(f['image'])
         
-    mylist = zip(title, desc, img)
+    mylist = zip(title, content, image)
     context = {
         'title' : 'HOME',
         'mylist' : mylist,
